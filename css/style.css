@@ -1,7 +1,7 @@
 /* Base Styles */
 :root {
-    --primary-color: #6b21a8;
-    --primary-hover: #7c3aed;
+    --primary-color: #7c3aed;
+    --primary-hover: #300685;
     --background-dark: #111827;
     --background-light: #1f2937;
     --text-light: #f3f4f6;
@@ -95,7 +95,22 @@ body {
 
 .hero-content {
     max-width: 800px;
+    
 }
+.hero-content h1 {
+    white-space: nowrap; /* Prevent text from wrapping on larger screens */
+    font-weight: 700;
+}
+
+/* For smaller screens (mobile devices) */
+@media (max-width: 768px) {
+    .hero-content h1 {
+        white-space: normal; /* Allow text to wrap on smaller screens */
+        font-size: 1.8rem; /* Adjust font size for mobile */
+    }
+}
+
+
 
 .hero h1 {
     font-size: 3.5rem;
@@ -103,7 +118,7 @@ body {
 }
 
 .hero .highlight {
-    color: var(--primary-color);
+    color: #7c3aed;
 }
 
 .cta-button {
