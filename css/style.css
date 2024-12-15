@@ -1,4 +1,10 @@
 /* Base Styles */
+/* Active link color */
+.nav-links li a.active {
+    color: #7c3aed; /* Purple color for the active link */
+}
+
+
 :root {
     --primary-color: #7c3aed;
     --primary-hover: #300685;

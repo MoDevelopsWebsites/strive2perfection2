@@ -8,6 +8,12 @@
     <link rel="stylesheet" href="css/animations.css">
     <link rel="stylesheet" href="css/contact.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        /* Active link color */
+        .nav-links li a.active {
+            color: #7c3aed; /* Purple color for the active link */
+        }
+    </style>
 </head>
 <body>
     <nav id="navbar">
@@ -21,9 +27,9 @@
                 <i class="fas fa-bars"></i>
             </button>
             <ul class="nav-links">
-                <li><a href="index.html" class="active">Home</a></li>
+                <li><a href="index.html">Home</a></li>
                 <li><a href="about.html">About Us</a></li>
-                <li><a href="contact.html">Contact</a></li>
+                <li><a href="contact.html" class="active">Contact</a></li>
             </ul>
         </div>
     </nav>
@@ -39,7 +45,7 @@
         <section class="contact-section">
             <div class="contact-container">
                 <div class="contact-info">
-                    <h2>Connect With Us</h2>
+                    <h2>Contact Us</h2>
                     <p>Have questions or want to join our team? We'd love to hear from you!</p>
                     
                     <div class="social-links">
@@ -92,6 +98,23 @@
     </footer>
 
     <script src="js/main.js"></script>
-    <script src="js/contact.js"></script>
+    <script>
+        // Wait for the DOM to be fully loaded before running the script
+        document.addEventListener('DOMContentLoaded', function () {
+            // Select all navigation links
+            const navLinks = document.querySelectorAll('.nav-links li a');
+
+            // Add a click event listener to each link
+            navLinks.forEach(link => {
+                link.addEventListener('click', function (e) {
+                    // Remove the 'active' class from all links
+                    navLinks.forEach(link => link.classList.remove('active'));
+
+                    // Add the 'active' class to the clicked link
+                    e.target.classList.add('active');
+                });
+            });
+        });
+    </script>
 </body>
 </html>
