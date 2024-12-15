@@ -28,8 +28,6 @@
         </div>
     </nav>
     
-    
-
     <main>
         <section class="hero contact-hero">
             <div class="hero-content">
@@ -52,7 +50,8 @@
                     </div>
                 </div>
 
-                <form id="contact-form" class="contact-form">
+                <!-- Updated form using Web3Forms API -->
+                <form action="https://api.web3forms.com/submit" method="POST">
                     <div class="form-group">
                         <label for="name">Name</label>
                         <input type="text" id="name" name="name" required>
@@ -75,6 +74,13 @@
                         <label for="message">Message</label>
                         <textarea id="message" name="message" required></textarea>
                     </div>
+
+                    <!-- Web3Forms hidden field for access key -->
+                    <input type="hidden" name="access_key" value="7e4fbe42-7c72-4cba-af78-ce7555a6dd6e">
+                    
+                    <!-- Redirect URL after form submission -->
+                    <input type="hidden" name="redirect" value="https://web3forms.com/success">
+                    
                     <button type="submit" class="submit-btn">Send Message</button>
                 </form>
             </div>
