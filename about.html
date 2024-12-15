@@ -13,6 +13,19 @@
         .nav-links li a.active {
             color: #7c3aed; /* Purple color for the active link */
         }
+        
+        /* Fade-in effect */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(50px);
+            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+        }
+
+        /* When element is in view, fade it in */
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
     </style>
 </head>
 <body>
@@ -35,14 +48,16 @@
     </nav>
 
     <main>
-        <section class="hero about-hero">
+        <!-- Hero Section -->
+        <section class="hero about-hero fade-in">
             <div class="hero-content">
                 <h1>About <span class="highlight">S2P</span></h1>
                 <p>Excellence through dedication and teamwork</p>
             </div>
         </section>
 
-        <section class="leadership-section">
+        <!-- Leadership Section -->
+        <section class="leadership-section fade-in">
             <h2>Our Leadership</h2> 
             <div class="leadership-grid">
                 <!-- Helix - CEO -->
@@ -107,7 +122,8 @@
             </div>
         </section>
 
-        <section class="mission-section">
+        <!-- Mission Section -->
+        <section class="mission-section fade-in">
             <div class="mission-content">
                 <h2>Our Mission</h2>
                 <p>To create a platform where passionate gamers can achieve their dreams through dedication, teamwork, and continuous improvement.</p>
@@ -135,6 +151,21 @@
                     // Add the 'active' class to the clicked link
                     e.target.classList.add('active');
                 });
+            });
+
+            // Fade-in effect
+            const fadeElements = document.querySelectorAll('.fade-in');
+            const observer = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, { threshold: 0.3 });
+
+            fadeElements.forEach(element => {
+                observer.observe(element);
             });
         });
     </script>

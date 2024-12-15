@@ -13,6 +13,19 @@
         .nav-links li a.active {
             color: #7c3aed; /* Purple color for the active link */
         }
+
+        /* Fade-in effect */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(50px);
+            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+        }
+
+        /* When element is in view, fade it in */
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
     </style>
 </head>
 <body>
@@ -35,14 +48,16 @@
     </nav>
     
     <main>
-        <section class="hero contact-hero">
+        <!-- Hero Section -->
+        <section class="hero contact-hero fade-in">
             <div class="hero-content">
                 <h1>Get in <span class="highlight">Touch</span></h1>
                 <p>Connect with the S2P family</p>
             </div>
         </section>
 
-        <section class="contact-section">
+        <!-- Contact Section -->
+        <section class="contact-section fade-in">
             <div class="contact-container">
                 <div class="contact-info">
                     <h2>Contact Us</h2>
@@ -57,7 +72,7 @@
                 </div>
 
                 <!-- Updated form using Web3Forms API -->
-                <form action="https://api.web3forms.com/submit" method="POST">
+                <form action="https://api.web3forms.com/submit" method="POST" class="fade-in">
                     <div class="form-group">
                         <label for="name">Name</label>
                         <input type="text" id="name" name="name" required>
@@ -113,6 +128,21 @@
                     // Add the 'active' class to the clicked link
                     e.target.classList.add('active');
                 });
+            });
+
+            // Fade-in effect
+            const fadeElements = document.querySelectorAll('.fade-in');
+            const observer = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, { threshold: 0.3 });
+
+            fadeElements.forEach(element => {
+                observer.observe(element);
             });
         });
     </script>

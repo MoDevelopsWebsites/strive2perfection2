@@ -10,6 +10,7 @@
     <link rel="stylesheet" href="css/animations.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+
     <style>
         /* Additional Styles for Custom Font */
         .hero-content h1 {
@@ -20,6 +21,19 @@
         /* Active link color */
         .nav-links li a.active {
             color: #7c3aed; /* Purple color for the active link */
+        }
+
+        /* Fade-in effect */
+        .fade-in {
+            opacity: 0; /* Initially invisible */
+            transform: translateY(50px); /* Start from below */
+            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+        }
+
+        /* When the element is in view, this class will be added */
+        .fade-in.visible {
+            opacity: 1; /* Make visible */
+            transform: translateY(0); /* Bring it back to its normal position */
         }
     </style>
 </head>
@@ -44,7 +58,7 @@
     
     <main>
         <!-- Hero Section -->
-        <section class="hero">
+        <section class="hero fade-in">
             <div class="hero-content">  
                 <h1><strong>Welcome to <span class="highlight">Strive 2 Perfection</span></strong></h1>
                 <p><strong>Where passion meets performance in professional esports</strong></p>
@@ -53,7 +67,7 @@
         </section>
 
         <!-- Latest News Section -->
-        <section class="news-section">
+        <section class="news-section fade-in">
             <h2>Latest News</h2>
             <div class="news-grid">
                 <div class="news-card">
@@ -69,7 +83,7 @@
         </section>
 
         <!-- Stats Section -->
-        <section class="stats-section">
+        <section class="stats-section fade-in">
             <div class="stats-grid">
                 <div class="stat-card">
                     <i class="fas fa-trophy"></i>
@@ -86,12 +100,11 @@
                     <h3>200,000+</h3>
                     <p>Social Evaluation</p>
                 </div>
-                </div>
             </div>
         </section>
 
         <!-- Upcoming Tournaments -->
-        <section class="tournaments-section">
+        <section class="tournaments-section fade-in">
             <h2>Upcoming Tournaments</h2>
             <div class="tournament-list">
                 <div class="tournament-card">
@@ -140,7 +153,6 @@
         </div>
     </footer>
 
-    <!-- Add the following JavaScript to handle active link behavior -->
     <script>
         // Wait for the DOM to be fully loaded before running the script
         document.addEventListener('DOMContentLoaded', function () {
@@ -156,6 +168,24 @@
                     // Add the 'active' class to the clicked link
                     e.target.classList.add('active');
                 });
+            });
+
+            // Select all elements to fade in
+            const fadeElements = document.querySelectorAll('.fade-in');
+
+            // Create an Intersection Observer
+            const observer = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                        observer.unobserve(entry.target); // Stop observing after visibility
+                    }
+                });
+            }, { threshold: 0.3 }); // Trigger when 30% of the element is visible
+
+            // Observe each fade-in element
+            fadeElements.forEach(element => {
+                observer.observe(element);
             });
         });
     </script>
