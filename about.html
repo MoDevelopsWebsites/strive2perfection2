@@ -8,20 +8,70 @@
     <link rel="stylesheet" href="css/animations.css">
     <link rel="stylesheet" href="css/about.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;700&display=swap">
     <style>
         /* Active link color */
         .nav-links li a.active {
             color: #7c3aed; /* Purple color for the active link */
+            transform: scale(1.1); /* Slightly larger active link */
+            transition: transform 0.3s ease;
         }
-        
-        /* Fade-in effect */
+
+        /* Apply Montserrat font to the navbar */
+        #navbar {
+            font-family: 'Montserrat', sans-serif;
+            opacity: 0; /* Initially invisible */
+            transition: opacity 1s ease-out; /* Fade-in effect */
+        }
+
+        /* Navbar animation to fade in */
+        .nav-links li a {
+            font-family: 'Montserrat', sans-serif;
+            position: relative;
+            padding: 10px 15px;
+            text-decoration: none;
+            color: var(--text-light); /* Default link color */
+            transition: all 0.3s ease;
+        }
+
+        /* Hover effects for navbar links */
+        .nav-links li a:hover {
+            color: #7c3aed;
+            transform: translateY(-5px); /* Hover translate effect */
+        }
+
+        /* Line under link on hover */
+        .nav-links li a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: #7c3aed;
+            transition: width 0.3s ease;
+        }
+
+        .nav-links li a:hover::after {
+            width: 100%;
+        }
+
+        /* Mobile menu button animation */
+        .mobile-menu-btn {
+            transition: transform 0.3s ease;
+        }
+
+        .mobile-menu-btn:hover {
+            transform: rotate(90deg); /* Rotating effect */
+        }
+
+        /* Fade-in effect for navbar and sections */
         .fade-in {
             opacity: 0;
             transform: translateY(50px);
             transition: opacity 0.8s ease-out, transform 0.8s ease-out;
         }
 
-        /* When element is in view, fade it in */
         .fade-in.visible {
             opacity: 1;
             transform: translateY(0);
@@ -29,7 +79,7 @@
     </style>
 </head>
 <body>
-    <nav id="navbar">
+    <nav id="navbar" class="fade-in">
         <div class="nav-content">
             <div class="logo">
                 <img src="https://cdn.discordapp.com/attachments/1317321613959757855/1317634221451382864/Capture_decran_2024-06-23_224613.png?ex=675f65fe&is=675e147e&hm=f8c18a0e07b6d4a65e3c7034bf82a6b6815d014d1893f516357f64b918e1c0dd&" 
@@ -48,7 +98,6 @@
     </nav>
 
     <main>
-        <!-- Hero Section -->
         <section class="hero about-hero fade-in">
             <div class="hero-content">
                 <h1>About <span class="highlight">S2P</span></h1>
@@ -56,7 +105,6 @@
             </div>
         </section>
 
-        <!-- Leadership Section -->
         <section class="leadership-section fade-in">
             <h2>Our Leadership</h2> 
             <div class="leadership-grid">
@@ -122,7 +170,6 @@
             </div>
         </section>
 
-        <!-- Mission Section -->
         <section class="mission-section fade-in">
             <div class="mission-content">
                 <h2>Our Mission</h2>
@@ -153,17 +200,26 @@
                 });
             });
 
-            // Fade-in effect
+            // Select navbar to fade in
+            const navbar = document.querySelector('#navbar');
+            window.addEventListener('load', function() {
+                navbar.style.opacity = 1;
+            });
+
+            // Select all elements to fade in
             const fadeElements = document.querySelectorAll('.fade-in');
+
+            // Create an Intersection Observer
             const observer = new IntersectionObserver((entries, observer) => {
                 entries.forEach(entry => {
                     if (entry.isIntersecting) {
                         entry.target.classList.add('visible');
-                        observer.unobserve(entry.target);
+                        observer.unobserve(entry.target); // Stop observing after visibility
                     }
                 });
-            }, { threshold: 0.3 });
+            }, { threshold: 0.3 }); // Trigger when 30% of the element is visible
 
+            // Observe each fade-in element
             fadeElements.forEach(element => {
                 observer.observe(element);
             });

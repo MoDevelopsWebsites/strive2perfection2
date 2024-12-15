@@ -8,10 +8,47 @@
     <link rel="stylesheet" href="css/animations.css">
     <link rel="stylesheet" href="css/contact.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;700&display=swap">
     <style>
         /* Active link color */
         .nav-links li a.active {
             color: #7c3aed; /* Purple color for the active link */
+            /* Remove the underline when clicked */
+            border-bottom: none; /* Remove the line under the active link */
+            
+        }
+
+        /* Navbar link hover animation */
+        .nav-links li a {
+            position: relative;
+            display: inline-block;
+            text-decoration: none;
+            color: #fff;
+            font-weight: 500;
+            padding: 8px 16px;
+            transition: color 0.3s ease;
+            font-weight: normal;
+        }
+
+        .nav-links li a::after {
+            content: "";
+            position: absolute;
+            width: 0; /* Start with no width */
+            height: 2px;
+            background: #7c3aed;
+            bottom: 0;
+            left: 0; /* Align to the left */
+            transition: width 0.3s ease, left 0.3s ease;
+        }
+
+        .nav-links li a:hover::after {
+            width: 100%; /* Expand to full width */
+            left: 0; /* Stay aligned to the left */
+        }
+
+        /* Apply Montserrat font to the navbar */
+        #navbar {
+            font-family: 'Montserrat', sans-serif;
         }
 
         /* Fade-in effect */
@@ -25,6 +62,16 @@
         .fade-in.visible {
             opacity: 1;
             transform: translateY(0);
+        }
+
+        /* Navbar animations */
+        .nav-links li {
+            opacity: 0;
+            transition: opacity 0.5s ease-in-out;
+        }
+
+        .nav-links li.visible {
+            opacity: 1;
         }
 
         /* Contact Page Styling */
@@ -71,11 +118,10 @@
             margin-bottom: 20px;
         }
 
-        /* Center Linktree */
         .social-links {
             display: flex;
-            justify-content: center; /* Centers the content horizontally */
-            align-items: center;     /* Centers the content vertically */
+            justify-content: center;
+            align-items: center;
             margin-top: 20px;
         }
 
@@ -87,7 +133,7 @@
             text-decoration: none;
             padding: 10px 20px;
             border-radius: 6px;
-            background-color: #111827; /* Added background for better visibility */
+            background-color: #111827;
         }
 
         .social-links a i {
@@ -95,7 +141,7 @@
         }
 
         .social-links a:hover {
-            background-color: #5a2da1; /* Hover effect for background */
+            background-color: #5a2da1;
         }
 
         /* Form Styling */
@@ -145,7 +191,6 @@
             height: 150px;
         }
 
-        /* Responsive Design */
         @media (max-width: 768px) {
             .contact-container {
                 padding: 0 20px;
@@ -189,7 +234,6 @@
     </nav>
 
     <main>
-        <!-- Hero Section -->
         <section class="hero contact-hero fade-in">
             <div class="hero-content">
                 <h1>Get in <span class="highlight">Touch</span></h1>
@@ -197,13 +241,11 @@
             </div>
         </section>
 
-        <!-- Contact Section -->
         <section class="contact-section fade-in">
             <div class="contact-container">
                 <div class="contact-info">
                     <h2>Contact Us</h2>
                     <p>Have questions or want to join our team? We'd love to hear from you!</p>
-
                     <div class="social-links">
                         <a href="https://linktr.ee/Strive2Perfection" target="_blank" class="social-link">
                             <i class="fas fa-link"></i>
@@ -212,7 +254,6 @@
                     </div>
                 </div>
 
-                <!-- Updated form using Web3Forms API -->
                 <form action="https://api.web3forms.com/submit" method="POST" class="fade-in">
                     <div class="form-group">
                         <label for="name">Name</label>
@@ -237,10 +278,7 @@
                         <textarea id="message" name="message" required></textarea>
                     </div>
 
-                    <!-- Web3Forms hidden field for access key -->
                     <input type="hidden" name="access_key" value="7e4fbe42-7c72-4cba-af78-ce7555a6dd6e">
-                    
-                    <!-- Redirect URL after form submission -->
                     <input type="hidden" name="redirect" value="https://web3forms.com/success">
                     
                     <button type="submit" class="submit-btn">Send Message</button>
@@ -250,28 +288,13 @@
     </main>
 
     <footer>
-        <!-- Footer content from index.html -->
+        <!-- Footer content -->
     </footer>
 
     <script src="js/main.js"></script>
     <script>
-        // Wait for the DOM to be fully loaded before running the script
         document.addEventListener('DOMContentLoaded', function () {
-            // Select all navigation links
-            const navLinks = document.querySelectorAll('.nav-links li a');
-
-            // Add a click event listener to each link
-            navLinks.forEach(link => {
-                link.addEventListener('click', function (e) {
-                    // Remove the 'active' class from all links
-                    navLinks.forEach(link => link.classList.remove('active'));
-
-                    // Add the 'active' class to the clicked link
-                    e.target.classList.add('active');
-                });
-            });
-
-            // Fade-in effect
+            const navLinks = document.querySelectorAll('.nav-links li');
             const fadeElements = document.querySelectorAll('.fade-in');
             const observer = new IntersectionObserver((entries, observer) => {
                 entries.forEach(entry => {
@@ -284,6 +307,12 @@
 
             fadeElements.forEach(element => {
                 observer.observe(element);
+            });
+
+            navLinks.forEach((link, index) => {
+                setTimeout(() => {
+                    link.classList.add('visible');
+                }, index * 150);
             });
         });
     </script>

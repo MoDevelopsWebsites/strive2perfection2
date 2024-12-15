@@ -5,22 +5,30 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Strive 2 Perfection - Professional Esports Organization</title>
     <!-- Add Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/animations.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
 
     <style>
         /* Additional Styles for Custom Font */
         .hero-content h1 {
-            font-family: 'Poppins', sans-serif;
+            font-family: 'Montserrat', sans-serif;
             font-weight: 600;
+        }
+
+        /* Navbar Font */
+        #navbar {
+            font-family: 'Montserrat', sans-serif; /* Apply Montserrat to navbar */
+            opacity: 0; /* Initially invisible */
+            transition: opacity 1s ease-out; /* Fade-in transition */
         }
 
         /* Active link color */
         .nav-links li a.active {
             color: #7c3aed; /* Purple color for the active link */
+            transform: scale(1.1);
+            transition: transform 0.3s ease;
         }
 
         /* Fade-in effect */
@@ -51,6 +59,11 @@
             padding: 20px;
             border-radius: 8px;
             box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease-in-out; /* Scale on hover */
+        }
+
+        .news-card:hover {
+            transform: scale(1.05); /* Hover scale effect */
         }
 
         .news-card img {
@@ -58,9 +71,48 @@
             border-radius: 8px;
             margin-bottom: 20px;
         }
+
+        /* Hover effects for navbar links */
+        .nav-links li a {
+            padding: 10px 15px;
+            position: relative;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .nav-links li a:hover {
+            color: #7c3aed;
+            transform: translateY(-5px); /* Hover translate effect */
+        }
+
+        /* Line under link on hover */
+        .nav-links li a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: #7c3aed;
+            transition: width 0.3s ease;
+        }
+
+        .nav-links li a:hover::after {
+            width: 100%;
+        }
+
+        /* Mobile menu button animation */
+        .mobile-menu-btn {
+            transition: transform 0.3s ease;
+        }
+
+        .mobile-menu-btn:hover {
+            transform: rotate(90deg); /* Rotate on hover */
+        }
     </style>
 </head>
 <body>
+    <!-- Navbar -->
     <nav id="navbar">
         <div class="nav-content">
             <div class="logo">
@@ -79,6 +131,7 @@
         </div>
     </nav>
     
+    <!-- Main content -->
     <main>
         <!-- Hero Section -->
         <section class="hero fade-in">
@@ -93,21 +146,21 @@
         <section class="news-section fade-in">
             <h2>Latest News</h2>
             <div class="news-grid">
-                <div class="news-card">
+                <div class="news-card" onclick="window.location.href='about.html';" style="cursor: pointer;">
                     <img src="https://cdn.discordapp.com/attachments/1134152358457249853/1317636901557112883/DESKTOP.png?ex=675f687d&is=675e16fd&hm=e3a8c3efc8a87febf04bc8a6ab7ebb74e4515d2c087656920192adceb6fa938e&" alt="Esports News">
                     <div class="news-content">
                         <h3>New Owner: Stunna</h3>
                         <p>We are proud to announce that Stunna has joined us as a new COO for Strive 2 Perfection!</p>
-                        <a href="#" class="read-more">Read More →</a>
+                        <a href="about.html" class="read-more">Read More →</a>
                     </div>
                 </div>
 
-                <div class="news-card">
+                <div class="news-card" onclick="window.location.href='about.html';" style="cursor: pointer;">
                     <img src="https://cdn.discordapp.com/attachments/1134152358457249853/1317636901557112883/DESKTOP.png?ex=675f687d&is=675e16fd&hm=e3a8c3efc8a87febf04bc8a6ab7ebb74e4515d2c087656920192adceb6fa938e&" alt="New Owner">
                     <div class="news-content">
                         <h3>New Owner: Cowen</h3>
                         <p>We are proud to announce that Cowen has joined us as a new COO for Strive 2 Perfection!</p>
-                        <a href="#" class="read-more">Read More →</a>
+                        <a href="about.html" class="read-more">Read More →</a>
                     </div>
                 </div>
 
@@ -162,6 +215,7 @@
         </section>
     </main>
 
+    <!-- Footer -->
     <footer>
         <div class="footer-content">
             <div class="footer-section">
@@ -208,6 +262,12 @@
                     // Add the 'active' class to the clicked link
                     e.target.classList.add('active');
                 });
+            });
+
+            // Select navbar to fade in
+            const navbar = document.querySelector('#navbar');
+            window.addEventListener('load', function() {
+                navbar.style.opacity = 1;
             });
 
             // Select all elements to fade in
