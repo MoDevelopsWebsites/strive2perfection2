@@ -35,6 +35,29 @@
             opacity: 1; /* Make visible */
             transform: translateY(0); /* Bring it back to its normal position */
         }
+
+        /* Latest News Section */
+        .news-section {
+            margin-top: 60px;
+        }
+
+        .news-grid {
+            display: grid;
+            gap: 40px;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); /* Spaced grid items */
+        }
+
+        .news-card {
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .news-card img {
+            width: 100%;
+            border-radius: 8px;
+            margin-bottom: 20px;
+        }
     </style>
 </head>
 <body>
@@ -78,7 +101,24 @@
                         <a href="#" class="read-more">Read More →</a>
                     </div>
                 </div>
-                <!-- More news cards... -->
+
+                <div class="news-card">
+                    <img src="https://cdn.discordapp.com/attachments/1134152358457249853/1317636901557112883/DESKTOP.png?ex=675f687d&is=675e16fd&hm=e3a8c3efc8a87febf04bc8a6ab7ebb74e4515d2c087656920192adceb6fa938e&" alt="New Owner">
+                    <div class="news-content">
+                        <h3>New Owner: Cowen</h3>
+                        <p>We are proud to announce that Cowen has joined us as the new owner of Strive 2 Perfection!</p>
+                        <a href="#" class="read-more">Read More →</a>
+                    </div>
+                </div>
+
+                <div class="news-card" onclick="window.location.href='contact.html';" style="cursor: pointer;">
+                    <img src="https://cdn.discordapp.com/attachments/1134152358457249853/1317636901557112883/DESKTOP.png?ex=675f687d&is=675e16fd&hm=e3a8c3efc8a87febf04bc8a6ab7ebb74e4515d2c087656920192adceb6fa938e&" alt="Contact Page Update">
+                    <div class="news-content">
+                        <h3>Contact Page Updated</h3>
+                        <p>We've made some exciting updates to our Contact Page. Click here to check it out!</p>
+                        <a href="contact.html" class="read-more">Read More →</a>
+                    </div>
+                </div>
             </div>
         </section>
 
