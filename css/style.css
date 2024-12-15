@@ -304,6 +304,7 @@ footer {
 .social-links {
     display: flex;
     gap: 1rem;
+    align-items: center;
 }
 
 .social-link {
