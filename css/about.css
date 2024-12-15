@@ -25,6 +25,21 @@
     transition: transform 0.3s ease;
 }
 
+/* Remove default link styles */
+.leader-card a {
+    text-decoration: none;  /* Remove underline */
+    color: inherit;  /* Inherit text color */
+    display: block;  /* Ensure the entire card is clickable */
+}
+
+/* Prevent highlight effect when clicking */
+.leader-card a:focus,
+.leader-card a:active {
+    outline: none;  /* Remove outline when clicked */
+    background: none;  /* Remove any background change when clicked */
+}
+
+
 .leader-card:hover {
     transform: translateY(-10px);
 }
